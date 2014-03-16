@@ -40,7 +40,7 @@ class RippleSessionStore < ActionDispatch::Session::AbstractStore
     [sid, session]
   end
 
-  def set_session(env, sid, session_data)
+  def set_session(env, sid, session_data, options = nil)
     robject = @bucket.get_or_new(sid)
     robject.content_type = "application/x-ruby-marshal"
     robject.data = session_data
