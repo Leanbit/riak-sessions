@@ -1,7 +1,7 @@
 require 'rack'
-require 'riak/session_store'
+require 'riak_session_store'
 
 if defined?(ActionDispatch)
-  require 'ripple/session_store'
-  ActionDispatch::Session::RiakStore = Ripple::SessionStore
+  require 'ripple_session_store'
+  ActionDispatch::Session::RiakStore = RippleSessionStore
 end
