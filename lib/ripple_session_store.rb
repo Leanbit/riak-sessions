@@ -50,6 +50,11 @@ class RippleSessionStore < ActionDispatch::Session::AbstractStore
     false
   end
 
+  def destroy_session(env, sid, options)
+    @bucket.delete(sid)
+    generate_sid unless options[:drop]
+  end
+
   def destroy(env)
     if sid = current_session_id(env)
       @bucket.delete(sid)
@@ -67,4 +72,3 @@ class RippleSessionStore < ActionDispatch::Session::AbstractStore
     @bucket.props = new_props unless new_props.empty?
   end
 end
-
